@@ -9,7 +9,8 @@ const otplib =  require('otplib');
 
 const port =  5000;  
 
-const sendOtp = new SendOtp('264127AxbfOOWBw5c6e7137');
+// const sendOtp = new SendOtp('264127AxbfOOWBw5c6e7137');
+const sendOtp = new SendOtp('268396AyieLKmkg5c90eb1f');
 // app.listen(5000)
 
 app.use(express.static(path.join(__dirname, "public")));
