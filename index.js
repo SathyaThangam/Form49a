@@ -7,12 +7,10 @@ const SendOtp = require('sendotp');
 var bodyParser = require('body-parser')
 const otplib =  require('otplib');
 
-
 const port =  5000;  
 
 // const sendOtp = new SendOtp('264127AxbfOOWBw5c6e7137');
 const sendOtp = new SendOtp('268396AyieLKmkg5c90eb1f');
-
 // app.listen(5000)
 
 app.use(express.static(path.join(__dirname, "public")));
@@ -26,28 +24,6 @@ app.get('/ping', function (req, res) {
 app.get('/', function(req, res) {
   res.sendFile(path.join(__dirname, "public", "index.html"));
 });
-
-
-//  module.exports = {
-//     entry: path.join(__dirname, "public"),
-//     output: {
-//         filename: 'index.html',
-//         path: path.join(__dirname, "public")},
-//     module:{
-//         rules:[{
-//            test: /\.js$/,
-//            exclude: /node_modules/,
-//            loader: 'babel-loader'
-//         }]
-//     },
-//     plugins:[
-//         new HWP(
-//            {template: path.join(__dirname, "public")}
-//         )
-//     ]
-//  }
-
-
 
 var MongoClient = require('mongodb').MongoClient;
 
@@ -66,8 +42,6 @@ app.post('/checkphonenumber', (req, res) => {
   var count = 0;
     const alldata = req.body;
     console.log(alldata.phonenumber)
-    
-    
   
     MongoClient.connect(url, function(err, db) {
       if (err) throw err;
@@ -203,6 +177,7 @@ var count = 0;
     alldata.phonenumber = "";
 
       })
+
 
 
   app.get('/sendmsg', (req, res) => {
