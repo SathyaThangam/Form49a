@@ -43,23 +43,23 @@ app.post('/checkphonenumber', (req, res) => {
     const alldata = req.body;
     console.log(alldata.phonenumber)
   
-    // MongoClient.connect(url, function(err, db) {
-    //   if (err) throw err;
-    //   var dbo = db.db("panform");
-    //   //Find the first document in the customers collection:
-    //   dbo.collection("formtable").findOne({id : `${alldata.phonenumber}`}, function(err, result) {
-    //     if (err) throw console.log("error",err);
-    //      console.log("error11",result);
+    MongoClient.connect(url, function(err, db) {
+      if (err) throw err;
+      var dbo = db.db("panform");
+      //Find the first document in the customers collection:
+      dbo.collection("formtable").findOne({id : `${alldata.phonenumber}`}, function(err, result) {
+        if (err) throw console.log("error",err);
+         console.log("error11",result);
   
-    //     if(result == null )
-    //     {
-    //      console.log("data null fouund")
-    //      res.json(
-    //       "Nulldata"
-    //     )
-    //     }
-    //     else{
-
+        if(result == null )
+        {
+         console.log("data null fouund")
+         res.json(
+          "Nulldata"
+        )
+        }
+        else{
+          console.log("data  fouund")
           const secret = 'KVKFKRCPNZQUYMLXOVYDSQKJKZDTSRLD'
           const token = otplib.authenticator.generate(secret);
           sendOtp.send(`91${alldata.phonenumber}`, "PRIIND", `${token}`, function (error, data) {
@@ -72,11 +72,11 @@ app.post('/checkphonenumber', (req, res) => {
           }  
 
           )
-    //     }
+        }
          
-    //     db.close();
-    //   });
-    // });
+        db.close();
+      });
+    });
   
   })
 
